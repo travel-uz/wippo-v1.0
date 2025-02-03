@@ -6,8 +6,8 @@ export const publicRoutes = [...authRoute]
 export const protectedRoutes = [
     {
         key: 'home',
-        path: '/home',
-        component: React.lazy(() => import('views/Home')),
+        path: '/organizer',
+        component: React.lazy(() => import('views/organizer/OrganizerList')),
         authority: [],
     },
     /** Example purpose only, please remove */

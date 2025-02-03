@@ -6,9 +6,9 @@ import {
 
 const navigationConfig = [
     {
-        key: 'home',
-        path: '/home',
-        title: 'Home',
+        key: 'organizer',
+        path: '/organizer',
+        title: 'Organizer',
         translateKey: 'nav.home',
         icon: 'home',
         type: NAV_ITEM_TYPE_ITEM,
