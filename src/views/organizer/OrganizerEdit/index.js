@@ -6,7 +6,7 @@ import reducer from './store'
 import { injectReducer } from 'store/index'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getProduct, updateProduct, deleteProduct } from './store/dataSlice'
-import ProductForm from 'views/sales/ProductForm'
+import ProductForm from 'views/organizer/OrganizerForm'
 import isEmpty from 'lodash/isEmpty'
 
 injectReducer('salesProductEdit', reducer)

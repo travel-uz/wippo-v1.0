@@ -65,7 +65,7 @@ const dataSlice = createSlice({
             })
             .addCase(getOrganizer.fulfilled, (state, action) => {
                 console.log(state, action, 'xx')
-                state.productList = action.payload.data
+                state.productList = [{x:1}]
                 state.tableData.total = action.payload.total
                 state.loading = false
             })

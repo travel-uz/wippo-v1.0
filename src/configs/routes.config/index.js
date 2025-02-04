@@ -5,9 +5,21 @@ export const publicRoutes = [...authRoute]
 
 export const protectedRoutes = [
     {
-        key: 'home',
-        path: '/organizer',
+        key: 'organizer',
+        path: '/app/organizer',
         component: React.lazy(() => import('views/organizer/OrganizerList')),
+        authority: [],
+    },
+    {
+        key: 'organizer',
+        path: '/app/organizer/organizer-new',
+        component: React.lazy(() => import('views/organizer/OrganizerForm')),
+        authority: [],
+    },
+    {
+        key: 'organizer',
+        path: '/app/organizer/organizer-edit',
+        component: React.lazy(() => import('views/organizer/OrganizerEdit')),
         authority: [],
     },
     /** Example purpose only, please remove */

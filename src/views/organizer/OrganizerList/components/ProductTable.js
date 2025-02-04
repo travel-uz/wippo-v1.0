@@ -1,81 +1,81 @@
 import React, { useEffect, useMemo, useRef } from 'react'
-import { Avatar, Badge } from 'components/ui'
+// import { Avatar, Badge } from 'components/ui'
 import { DataTable } from 'components/shared'
-import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
-import { FiPackage } from 'react-icons/fi'
+// import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
+// import { FiPackage } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrganizer, setTableData } from '../store/dataSlice'
-import { setSelectedProduct } from '../store/stateSlice'
-import { toggleDeleteConfirmation } from '../store/stateSlice'
-import useThemeClass from 'utils/hooks/useThemeClass'
+// import { setSelectedProduct } from '../store/stateSlice'
+// import { toggleDeleteConfirmation } from '../store/stateSlice'
+// import useThemeClass from 'utils/hooks/useThemeClass'
 import ProductDeleteConfirmation from './ProductDeleteConfirmation'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import cloneDeep from 'lodash/cloneDeep'
 
-const inventoryStatusColor = {
-    0: {
-        label: 'In Stock',
-        dotClass: 'bg-emerald-500',
-        textClass: 'text-emerald-500',
-    },
-    1: {
-        label: 'Limited',
-        dotClass: 'bg-amber-500',
-        textClass: 'text-amber-500',
-    },
-    2: {
-        label: 'Out of Stock',
-        dotClass: 'bg-red-500',
-        textClass: 'text-red-500',
-    },
-}
+// const inventoryStatusColor = {
+//     0: {
+//         label: 'In Stock',
+//         dotClass: 'bg-emerald-500',
+//         textClass: 'text-emerald-500',
+//     },
+//     1: {
+//         label: 'Limited',
+//         dotClass: 'bg-amber-500',
+//         textClass: 'text-amber-500',
+//     },
+//     2: {
+//         label: 'Out of Stock',
+//         dotClass: 'bg-red-500',
+//         textClass: 'text-red-500',
+//     },
+// }
 
-const ActionColumn = ({ row }) => {
-    const dispatch = useDispatch()
-    const { textTheme } = useThemeClass()
-    const navigate = useNavigate()
+// const ActionColumn = ({ row }) => {
+//     const dispatch = useDispatch()
+//     const { textTheme } = useThemeClass()
+//     const navigate = useNavigate()
 
-    const onEdit = () => {
-        navigate(`/app/organizer/organizer-edit/${row.id}`)
-    }
+//     const onEdit = () => {
+//         navigate(`/app/organizer/organizer-edit/${row.id}`)
+//     }
 
-    const onDelete = () => {
-        dispatch(toggleDeleteConfirmation(true))
-        dispatch(setSelectedProduct(row.id))
-    }
+//     const onDelete = () => {
+//         dispatch(toggleDeleteConfirmation(true))
+//         dispatch(setSelectedProduct(row.id))
+//     }
 
-    return (
-        <div className="flex justify-end text-lg">
-            <span
-                className={`cursor-pointer p-2 hover:${textTheme}`}
-                onClick={onEdit}
-            >
-                <HiOutlinePencil />
-            </span>
-            <span
-                className="cursor-pointer p-2 hover:text-red-500"
-                onClick={onDelete}
-            >
-                <HiOutlineTrash />
-            </span>
-        </div>
-    )
-}
+//     return (
+//         <div className="flex justify-end text-lg">
+//             <span
+//                 className={`cursor-pointer p-2 hover:${textTheme}`}
+//                 onClick={onEdit}
+//             >
+//                 <HiOutlinePencil />
+//             </span>
+//             <span
+//                 className="cursor-pointer p-2 hover:text-red-500"
+//                 onClick={onDelete}
+//             >
+//                 <HiOutlineTrash />
+//             </span>
+//         </div>
+//     )
+// }
 
-const ProductColumn = ({ row }) => {
-    const avatar = row.img ? (
-        <Avatar src={row.img} />
-    ) : (
-        <Avatar icon={<FiPackage />} />
-    )
+// const ProductColumn = ({ row }) => {
+//     const avatar = row.img ? (
+//         <Avatar src={row.img} />
+//     ) : (
+//         <Avatar icon={<FiPackage />} />
+//     )
 
-    return (
-        <div className="flex items-center">
-            {avatar}
-            <span className={`ml-2 rtl:mr-2 font-semibold`}>{row.name}</span>
-        </div>
-    )
-}
+//     return (
+//         <div className="flex items-center">
+//             {avatar}
+//             <span className={`ml-2 rtl:mr-2 font-semibold`}>{row.name}</span>
+//         </div>
+//     )
+// }
 
 const ProductTable = () => {
 
@@ -95,7 +95,6 @@ const ProductTable = () => {
     
     const data = useSelector((state) => state.organizerList.data.productList)
 
-    console.log(data, 'data')
 
     useEffect(() => {
         fetchData()
@@ -114,9 +113,12 @@ const ProductTable = () => {
     )
 
     const fetchData = () => {
-        dispatch(getOrganizer({}))
+        dispatch(getOrganizer({query}))
         // pageIndex, pageSize, sort, query, filterData
     }
+
+    console.log(data, 'data')
+
 
     const columns = useMemo(
         () => [

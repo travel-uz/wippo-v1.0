@@ -1,20 +1,14 @@
 import React from 'react'
 import { AdaptableCard } from 'components/shared'
 import { Input, FormItem, Select } from 'components/ui'
-import CreatableSelect from 'react-select/creatable'
+// import CreatableSelect from 'react-select/creatable'
 import { Field } from 'formik'
 
 export const categories = [
-    { label: 'Bags', value: 'bags' },
-    { label: 'Cloths', value: 'cloths' },
-    { label: 'Devices', value: 'devices' },
-    { label: 'Shoes', value: 'shoes' },
-    { label: 'Watches', value: 'watches' },
-]
-
-export const tags = [
-    { label: 'trend', value: 'trend' },
-    { label: 'unisex', value: 'unisex' },
+    { label: 'New', value: '1' },
+    { label: 'Registered', value: '2' },
+    { label: 'Allowed', value: '3' },
+    { label: 'Bloacked', value: '4' },
 ]
 
 const OrganizationFields = (props) => {
@@ -23,11 +17,11 @@ const OrganizationFields = (props) => {
     return (
         <AdaptableCard className="mb-4" divider isLastChild>
             <h5>Organizations</h5>
-            <p className="mb-6">Section to config the product attribute</p>
+            <p className="mb-6">Section to config the organizer attribute</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="col-span-1">
                     <FormItem
-                        label="Category"
+                        label="Status"
                         invalid={errors.category && touched.category}
                         errorMessage={errors.category}
                     >
@@ -54,47 +48,7 @@ const OrganizationFields = (props) => {
                 </div>
                 <div className="col-span-1">
                     <FormItem
-                        label="Tags"
-                        invalid={errors.tags && touched.tags}
-                        errorMessage={errors.tags}
-                    >
-                        <Field name="tags">
-                            {({ field, form }) => (
-                                <Select
-                                    componentAs={CreatableSelect}
-                                    isMulti
-                                    field={field}
-                                    form={form}
-                                    options={tags}
-                                    value={values.tags}
-                                    onChange={(option) =>
-                                        form.setFieldValue(field.name, option)
-                                    }
-                                />
-                            )}
-                        </Field>
-                    </FormItem>
-                </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="col-span-1">
-                    <FormItem
-                        label="Brand"
-                        invalid={errors.brand && touched.brand}
-                        errorMessage={errors.brand}
-                    >
-                        <Field
-                            type="text"
-                            autoComplete="off"
-                            name="brand"
-                            placeholder="Brand"
-                            component={Input}
-                        />
-                    </FormItem>
-                </div>
-                <div className="col-span-1">
-                    <FormItem
-                        label="Vendor"
+                        label="Phone"
                         invalid={errors.vendor && touched.vendor}
                         errorMessage={errors.vendor}
                     >
@@ -102,7 +56,39 @@ const OrganizationFields = (props) => {
                             type="text"
                             autoComplete="off"
                             name="vendor"
-                            placeholder="Vendor"
+                            placeholder="Phone"
+                            component={Input}
+                        />
+                    </FormItem>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="col-span-1">
+                    <FormItem
+                        label="Login"
+                        invalid={errors.brand && touched.brand}
+                        errorMessage={errors.brand}
+                    >
+                        <Field
+                            type="text"
+                            autoComplete="off"
+                            name="brand"
+                            placeholder="Login"
+                            component={Input}
+                        />
+                    </FormItem>
+                </div>
+                <div className="col-span-1">
+                    <FormItem
+                        label="Password"
+                        invalid={errors.vendor && touched.vendor}
+                        errorMessage={errors.vendor}
+                    >
+                        <Field
+                            type="text"
+                            autoComplete="off"
+                            name="vendor"
+                            placeholder="Password"
                             component={Input}
                         />
                     </FormItem>

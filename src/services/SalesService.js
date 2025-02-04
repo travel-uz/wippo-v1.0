@@ -10,7 +10,7 @@ export async function apiGetSalesDashboardData(data) {
 
 export async function apiGetSalesProducts(data) {
     return ApiService.fetchData({
-        url: '/sales/products',
+        url: '/api/organizer/get-list',
         method: 'post',
         data,
     })

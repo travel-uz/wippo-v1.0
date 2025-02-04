@@ -3,7 +3,6 @@ import { FormContainer, Button, hooks } from 'components/ui'
 import { StickyFooter, ConfirmDialog } from 'components/shared'
 import { Form, Formik } from 'formik'
 import BasicInformationFields from './BasicInformationFields'
-import PricingFields from './PricingFields'
 import OrganizationFields from './OrganizationFields'
 import ProductImages from './ProductImages'
 import cloneDeep from 'lodash/cloneDeep'
@@ -70,6 +69,8 @@ const DeleteProductButton = ({ onDelete }) => {
 const ProductForm = forwardRef((props, ref) => {
     const { type, initialData, onFormSubmit, onDiscard, onDelete } = props
 
+    console.log(props, 'onDiscard')
+
     const newId = useUniqueId('product-')
 
     return (
@@ -104,11 +105,6 @@ const ProductForm = forwardRef((props, ref) => {
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                                 <div className="lg:col-span-2">
                                     <BasicInformationFields
-                                        touched={touched}
-                                        errors={errors}
-                                        values={values}
-                                    />
-                                    <PricingFields
                                         touched={touched}
                                         errors={errors}
                                         values={values}

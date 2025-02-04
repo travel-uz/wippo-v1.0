@@ -17,9 +17,9 @@ const BasicInformationFields = (props) => {
     return (
         <AdaptableCard className="mb-4" divider>
             <h5>Basic Information</h5>
-            <p className="mb-6">Section to config basic product information</p>
+            <p className="mb-6">Section to config basic organizer information</p>
             <FormItem
-                label="Product Name"
+                label="Organizer Name"
                 invalid={errors.name && touched.name}
                 errorMessage={errors.name}
             >
@@ -31,7 +31,7 @@ const BasicInformationFields = (props) => {
                     component={Input}
                 />
             </FormItem>
-            <FormItem
+            {/* <FormItem
                 label="Code"
                 invalid={errors.productCode && touched.productCode}
                 errorMessage={errors.productCode}
@@ -43,9 +43,26 @@ const BasicInformationFields = (props) => {
                     placeholder="Code"
                     component={Input}
                 />
+            </FormItem> */}
+            <FormItem
+                label="Description (ru)"
+                labelClass="!justify-start"
+                invalid={errors.description && touched.description}
+                errorMessage={errors.description}
+            >
+                <Field name="description">
+                    {({ field, form }) => (
+                        <RichTextEditor
+                            value={field.value}
+                            onChange={(val) =>
+                                form.setFieldValue(field.name, val)
+                            }
+                        />
+                    )}
+                </Field>
             </FormItem>
             <FormItem
-                label="Description"
+                label="Description (uz)"
                 labelClass="!justify-start"
                 invalid={errors.description && touched.description}
                 errorMessage={errors.description}

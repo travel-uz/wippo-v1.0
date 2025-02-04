@@ -79,6 +79,7 @@ const Select = React.forwardRef((props, ref) => {
         form,
         field,
         components,
+        defaultvalue,
         componentAs: Component,
         ...rest
     } = props
