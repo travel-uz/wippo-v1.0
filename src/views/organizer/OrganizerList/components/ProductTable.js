@@ -117,31 +117,24 @@ const ProductTable = () => {
         // pageIndex, pageSize, sort, query, filterData
     }
 
-    console.log(data, 'data')
-
-
     const columns = useMemo(
         () => [
             {
                 header: 'Name',
                 accessorKey: 'name',
-                // cell: (props) => {
-                //     const row = props.row.original
-                //     return <ProductColumn row={row} />
-                // },
+                cell: (props) => {
+                            const row = props.row.original
+                            return <span className="capitalize">{row.title['en']}</span>
+                        },
+            },
+            {
+                header: 'Phone',
+                accessorKey: 'phone',
+               
             },
             // {
-            //     header: 'Category',
-            //     accessorKey: 'category',
-            //     cell: (props) => {
-            //         const row = props.row.original
-            //         return <span className="capitalize">{row.category}</span>
-            //     },
-            // },
-            // {
-            //     header: 'Quantity',
-            //     accessorKey: 'stock',
-            //     sortable: true,
+            //     header: 'Login',
+            //     accessorKey: 'login',
             // },
             // {
             //     header: 'Status',

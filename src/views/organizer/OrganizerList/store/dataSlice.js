@@ -7,7 +7,6 @@ export const getOrganizer = createAsyncThunk(
     'organizerList/data/getOrganizer',
     async (data) => {
         const response = await apiGetOrganizerList(data)
-        console.log(response, 'response')
         return response.data
     }
 )
@@ -64,9 +63,8 @@ const dataSlice = createSlice({
                 state.loading = true
             })
             .addCase(getOrganizer.fulfilled, (state, action) => {
-                console.log(state, action, 'xx')
-                state.productList = [{x:1}]
-                state.tableData.total = action.payload.total
+                state.productList = action.payload
+                state.tableData.total = action.payload.length
                 state.loading = false
             })
     },
