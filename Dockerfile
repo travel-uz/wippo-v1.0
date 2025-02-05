@@ -1,20 +1,26 @@
-# Use a lightweight Nginx image
-FROM nginx:alpine
+# Use Node.js official image
+FROM node:18-alpine
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# Set the working directory inside the container
+WORKDIR /projects
 
-# Remove default Nginx static files
-RUN rm -rf ./*
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Copy React build files
-COPY build/ .
+# Install dependencies
+RUN npm install
 
-# Copy custom Nginx config (optional)
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy the rest of the application
+COPY . .
 
-# Expose port
+# Build the React app
+RUN npm run build
+
+# Install `serve` to serve static files
+RUN npm install -g serve
+
+# Expose the port your React app runs on
 EXPOSE 3000
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the React app using `serve`
+CMD ["serve", "-s", "build", "-l", "3000"]
