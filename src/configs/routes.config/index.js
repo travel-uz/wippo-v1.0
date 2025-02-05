@@ -13,7 +13,7 @@ export const protectedRoutes = [
     {
         key: 'organizer',
         path: '/app/organizer/organizer-new',
-        component: React.lazy(() => import('views/organizer/OrganizerForm')),
+        component: React.lazy(() => import('views/organizer/OrganizerNew')),
         authority: [],
     },
     {

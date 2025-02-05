@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 // import { Avatar, Badge } from 'components/ui'
 import { DataTable } from 'components/shared'
-// import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
+import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
 // import { FiPackage } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrganizer, setTableData } from '../store/dataSlice'
-// import { setSelectedProduct } from '../store/stateSlice'
-// import { toggleDeleteConfirmation } from '../store/stateSlice'
-// import useThemeClass from 'utils/hooks/useThemeClass'
+import { setSelectedProduct } from '../store/stateSlice'
+import { toggleDeleteConfirmation } from '../store/stateSlice'
+import useThemeClass from 'utils/hooks/useThemeClass'
 import ProductDeleteConfirmation from './ProductDeleteConfirmation'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import cloneDeep from 'lodash/cloneDeep'
 
 // const inventoryStatusColor = {
@@ -30,37 +30,37 @@ import cloneDeep from 'lodash/cloneDeep'
 //     },
 // }
 
-// const ActionColumn = ({ row }) => {
-//     const dispatch = useDispatch()
-//     const { textTheme } = useThemeClass()
-//     const navigate = useNavigate()
+const ActionColumn = ({ row }) => {
+    const dispatch = useDispatch()
+    const { textTheme } = useThemeClass()
+    const navigate = useNavigate()
 
-//     const onEdit = () => {
-//         navigate(`/app/organizer/organizer-edit/${row.id}`)
-//     }
+    const onEdit = () => {
+        navigate(`/app/organizer/organizer-edit/${row.id}`)
+    }
 
-//     const onDelete = () => {
-//         dispatch(toggleDeleteConfirmation(true))
-//         dispatch(setSelectedProduct(row.id))
-//     }
+    const onDelete = () => {
+        dispatch(toggleDeleteConfirmation(true))
+        dispatch(setSelectedProduct(row.id))
+    }
 
-//     return (
-//         <div className="flex justify-end text-lg">
-//             <span
-//                 className={`cursor-pointer p-2 hover:${textTheme}`}
-//                 onClick={onEdit}
-//             >
-//                 <HiOutlinePencil />
-//             </span>
-//             <span
-//                 className="cursor-pointer p-2 hover:text-red-500"
-//                 onClick={onDelete}
-//             >
-//                 <HiOutlineTrash />
-//             </span>
-//         </div>
-//     )
-// }
+    return (
+        <div className="flex justify-end text-lg">
+            <span
+                className={`cursor-pointer p-2 hover:${textTheme}`}
+                onClick={onEdit}
+            >
+                <HiOutlinePencil />
+            </span>
+            <span
+                className="cursor-pointer p-2 hover:text-red-500"
+                onClick={onDelete}
+            >
+                <HiOutlineTrash />
+            </span>
+        </div>
+    )
+}
 
 // const ProductColumn = ({ row }) => {
 //     const avatar = row.img ? (
@@ -165,11 +165,11 @@ const ProductTable = () => {
             //         return <span>${price}</span>
             //     },
             // },
-            // {
-            //     header: '',
-            //     id: 'action',
-            //     cell: (props) => <ActionColumn row={props.row.original} />,
-            // },
+            {
+                header: '',
+                id: 'action',
+                cell: (props) => <ActionColumn row={props.row.original} />,
+            },
         ],
         []
     )

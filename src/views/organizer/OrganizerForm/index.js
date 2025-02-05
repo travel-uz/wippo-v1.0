@@ -4,7 +4,7 @@ import { StickyFooter, ConfirmDialog } from 'components/shared'
 import { Form, Formik } from 'formik'
 import BasicInformationFields from './BasicInformationFields'
 import OrganizationFields from './OrganizationFields'
-import ProductImages from './ProductImages'
+// import ProductImages from './ProductImages'
 import cloneDeep from 'lodash/cloneDeep'
 import { HiOutlineTrash } from 'react-icons/hi'
 import { AiOutlineSave } from 'react-icons/ai'
@@ -13,10 +13,19 @@ import * as Yup from 'yup'
 const { useUniqueId } = hooks
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Product Name Required'),
-    price: Yup.number().required('Price Required'),
-    stock: Yup.number().required('SKU Required'),
-    category: Yup.string().required('Category Required'),
+    title: Yup.object().shape({
+        en: Yup.string().required('Organizer Name in English is required'),
+        ru: Yup.string().required('Organizer Name in Russian is required'),
+        uz: Yup.string().required('Organizer Name in Uzbek is required'),
+    }),
+    description: Yup.object().shape({
+        en: Yup.string().required('Organizer Description in required'),
+        ru: Yup.string().required('Organizer Description is required'),
+        uz: Yup.string().required('Organizer Description is required'),
+    }),
+    phone: Yup.number().required('Phone Required'),
+    login: Yup.string().required('Login Required'),
+    password: Yup.string().required('Password Required'),
 })
 
 const DeleteProductButton = ({ onDelete }) => {
@@ -67,8 +76,8 @@ const DeleteProductButton = ({ onDelete }) => {
 }
 
 const ProductForm = forwardRef((props, ref) => {
-    const { type, initialData, onFormSubmit, onDiscard, onDelete } = props
-
+    const { type, initialData,onDiscard, onDelete } = props
+    // onFormSubmit
     console.log(props, 'onDiscard')
 
     const newId = useUniqueId('product-')
@@ -79,24 +88,25 @@ const ProductForm = forwardRef((props, ref) => {
                 innerRef={ref}
                 initialValues={{
                     ...initialData,
-                    tags: initialData?.tags
-                        ? initialData.tags.map((value) => ({
-                              label: value,
-                              value,
-                          }))
-                        : [],
+                    // tags: initialData?.tags
+                    //     ? initialData.tags.map((value) => ({
+                    //           label: value,
+                    //           value,
+                    //       }))
+                    //     : [],
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     const formData = cloneDeep(values)
-                    formData.tags = formData.tags.map((tag) => tag.value)
+                    // formData.tags = formData.tags.map((tag) => tag.value)
                     if (type === 'new') {
                         formData.id = newId
-                        if (formData.imgList.length > 0) {
-                            formData.img = formData.imgList[0].img
-                        }
+                        // if (formData.imgList.length > 0) {
+                        //     formData.img = formData.imgList[0].img
+                        // }
                     }
-                    onFormSubmit?.(formData, setSubmitting)
+                    // onFormSubmit?.(formData, setSubmitting)
+                    console.log(values, 'values')
                 }}
             >
                 {({ values, touched, errors, isSubmitting }) => (
@@ -115,13 +125,32 @@ const ProductForm = forwardRef((props, ref) => {
                                         values={values}
                                     />
                                 </div>
-                                <div className="lg:col-span-1">
+                                {/* <div className="lg:col-span-1">
                                     <ProductImages
+                                        type={'logo'}
                                         touched={touched}
                                         errors={errors}
                                         values={values}
                                     />
-                                </div>
+                                    <ProductImages
+                                        type={'banner'}
+                                        touched={touched}
+                                        errors={errors}
+                                        values={values}
+                                    />
+                                    <ProductImages
+                                        type={'extra'}
+                                        touched={touched}
+                                        errors={errors}
+                                        values={values}
+                                    />
+                                    <ProductImages
+                                        type={'main'}
+                                        touched={touched}
+                                        errors={errors}
+                                        values={values}
+                                    />
+                                </div> */}
                             </div>
                             <StickyFooter
                                 className="-mx-8 px-8 flex items-center justify-between py-4"
@@ -166,21 +195,20 @@ ProductForm.defaultProps = {
     type: 'edit',
     initialData: {
         id: '',
-        name: '',
-        productCode: '',
-        img: '',
-        imgList: [],
-        category: '',
-        price: 0,
-        stock: 0,
-        status: 0,
-        costPerItem: 0,
-        bulkDiscountPrice: 0,
-        taxRate: 6,
-        tags: [],
-        brand: '',
-        vendor: '',
+        status: '',
+        is_deleted: '',
+        created_at: '',
+        title: {
+            en: '',
+            ru: '',
+            uz: '',
+        },
         description: '',
+        phone: '',
+        password: '',
+        login: '',
+        total: '1',
+        files: [],
     },
 }
 

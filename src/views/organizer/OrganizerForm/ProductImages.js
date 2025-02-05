@@ -150,7 +150,7 @@ const ProductImages = (props) => {
 
     return (
         <AdaptableCard className="mb-4">
-            <h5>Organization Image</h5>
+            <h5>Product Image</h5>
             <p className="mb-6">Add or change image for the product</p>
             <FormItem>
                 <Field name="imgList">
