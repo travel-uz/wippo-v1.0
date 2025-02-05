@@ -63,7 +63,7 @@ const dataSlice = createSlice({
                 state.loading = true
             })
             .addCase(getOrganizer.fulfilled, (state, action) => {
-                state.productList = action.payload
+                state.productList = action.payload.data
                 state.tableData.total = action.payload.length
                 state.loading = false
             })

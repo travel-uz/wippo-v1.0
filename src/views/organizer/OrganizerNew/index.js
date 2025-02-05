@@ -1,14 +1,14 @@
 import React from 'react'
-import ProductForm from 'views/sales/ProductForm'
+import ProductForm from 'views/organizer/OrganizerForm'
 import { toast, Notification } from 'components/ui'
 import { useNavigate } from 'react-router-dom'
-import { apiCreateSalesProduct } from 'services/SalesService'
+import { apiCreateOrganizer } from 'services/OrganizerService'
 
 const ProductNew = () => {
     const navigate = useNavigate()
 
     const addProduct = async (data) => {
-        const response = await apiCreateSalesProduct(data)
+        const response = await apiCreateOrganizer(data)
         return response.data
     }
 

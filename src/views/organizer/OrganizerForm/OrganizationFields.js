@@ -22,10 +22,10 @@ const OrganizationFields = (props) => {
                 <div className="col-span-1">
                     <FormItem
                         label="Status"
-                        invalid={errors.category && touched.category}
-                        errorMessage={errors.category}
+                        invalid={errors.status && touched.status}
+                        errorMessage={errors.status}
                     >
-                        <Field name="category">
+                        <Field name="status">
                             {({ field, form }) => (
                                 <Select
                                     field={field}
@@ -33,7 +33,7 @@ const OrganizationFields = (props) => {
                                     options={categories}
                                     value={categories.filter(
                                         (category) =>
-                                            category.value === values.category
+                                            category.value === values.status
                                     )}
                                     onChange={(option) =>
                                         form.setFieldValue(
@@ -49,13 +49,13 @@ const OrganizationFields = (props) => {
                 <div className="col-span-1">
                     <FormItem
                         label="Phone"
-                        invalid={errors.vendor && touched.vendor}
-                        errorMessage={errors.vendor}
+                        invalid={errors.phone && touched.phone}
+                        errorMessage={errors.phone}
                     >
                         <Field
                             type="text"
                             autoComplete="off"
-                            name="vendor"
+                            name="phone"
                             placeholder="Phone"
                             component={Input}
                         />
@@ -66,13 +66,13 @@ const OrganizationFields = (props) => {
                 <div className="col-span-1">
                     <FormItem
                         label="Login"
-                        invalid={errors.brand && touched.brand}
-                        errorMessage={errors.brand}
+                        invalid={errors.login && touched.login}
+                        errorMessage={errors.login}
                     >
                         <Field
                             type="text"
                             autoComplete="off"
-                            name="brand"
+                            name="login"
                             placeholder="Login"
                             component={Input}
                         />
@@ -81,13 +81,13 @@ const OrganizationFields = (props) => {
                 <div className="col-span-1">
                     <FormItem
                         label="Password"
-                        invalid={errors.vendor && touched.vendor}
-                        errorMessage={errors.vendor}
+                        invalid={errors.password && touched.password}
+                        errorMessage={errors.password}
                     >
                         <Field
                             type="text"
                             autoComplete="off"
-                            name="vendor"
+                            name="password"
                             placeholder="Password"
                             component={Input}
                         />
