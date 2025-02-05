@@ -31,6 +31,8 @@ const SignInForm = (props) => {
 
     const { signIn } = useAuth()
 
+    // console.log(signIn, 'signIn')
+
     const onSignIn = async (values, setSubmitting) => {
         const { login, password } = values
         setSubmitting(true)

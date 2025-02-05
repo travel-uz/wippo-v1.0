@@ -20,8 +20,6 @@ BaseService.interceptors.request.use(
 
         let accessToken = persistData.auth.session.token
 
-        console.log(rawPersistData, 'rawPersistData')
-
         if (!accessToken) {
             const { auth } = store.getState()
             accessToken = auth.session.token
