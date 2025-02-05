@@ -7,7 +7,7 @@ import {
 const navigationConfig = [
     {
         key: 'organizer',
-        path: '/organizer',
+        path: '/app/organizer/organizer-list',
         title: 'Organizer',
         translateKey: 'nav.home',
         icon: 'home',
