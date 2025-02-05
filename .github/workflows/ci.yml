@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/wippo-admin-panel:latest
-            docker stop wippo-admin-panel || true
-            docker rm wippo-admin-panel || true
-            docker run -d -p 3000:3000 --name wippo-admin-panel ${{ secrets.DOCKER_USERNAME }}/wippo-admin-panel:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/wippo-v1.0:latest
+            docker stop wippo-v1.0 || true
+            docker rm wippo-v1.0 || true
+            docker run -d -p 3000:3000 --name wippo-v1.0 ${{ secrets.DOCKER_USERNAME }}/wippo-v1.0:latest
