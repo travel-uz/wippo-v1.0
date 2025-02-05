@@ -1,6 +1,6 @@
 import axios from 'axios'
 import appConfig from 'configs/app.config'
-import { TOKEN_TYPE, REQUEST_HEADER_AUTH_KEY } from 'constants/api.constant'
+import { REQUEST_HEADER_AUTH_KEY } from 'constants/api.constant' //TOKEN_TYPE
 import { PERSIST_STORE_NAME } from 'constants/app.constant'
 import deepParseJson from 'utils/deepParseJson'
 import store from '../store'
@@ -20,15 +20,15 @@ BaseService.interceptors.request.use(
 
         let accessToken = persistData.auth.session.token
 
+        console.log(rawPersistData, 'rawPersistData')
+
         if (!accessToken) {
             const { auth } = store.getState()
             accessToken = auth.session.token
         }
 
         if (accessToken) {
-            config.headers[
-                REQUEST_HEADER_AUTH_KEY
-            ] = `${TOKEN_TYPE}${accessToken}`
+            config.headers[REQUEST_HEADER_AUTH_KEY] = `${accessToken}`
         }
 
         return config
