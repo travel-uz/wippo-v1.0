@@ -2,7 +2,7 @@ import ApiService from './ApiService'
 
 export async function apiGetOrganizerList(data) {
     return ApiService.fetchData({
-        url: '/api/organizer/list',
+        url: '/api/admin/organizer/list',
         method: 'post',
         data,
     })

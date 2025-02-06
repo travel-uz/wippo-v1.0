@@ -1,6 +1,6 @@
 import axios from 'axios'
 import appConfig from 'configs/app.config'
-import { REQUEST_HEADER_AUTH_KEY } from 'constants/api.constant' //TOKEN_TYPE
+import { REQUEST_HEADER_AUTH_KEY } from 'constants/api.constant'
 import { PERSIST_STORE_NAME } from 'constants/app.constant'
 import deepParseJson from 'utils/deepParseJson'
 import store from '../store'

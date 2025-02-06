@@ -16,17 +16,19 @@ function useAuth() {
 
     const { token, signedIn } = useSelector((state) => state.auth.session)
 
+    const { userInfo } = useSelector((state) => state.auth.user)
+
     const signIn = async (values) => {
         try {
             const resp = await apiSignIn(values)
+            // console.log('resp', resp.data)
             if (resp.data) {
                 const { accessToken } = resp.data
                 dispatch(onSignInSuccess(accessToken))
-                // console.log(resp.data, 'data')
-                if (!resp.data.user) {
+                if (resp.data.admin) {
                     dispatch(
                         setUser(
-                            resp.data.user || {
+                            resp.data.admin || {
                                 avatar: '',
                                 userName: 'Anonymous',
                                 authority: ['USER'],
@@ -35,7 +37,8 @@ function useAuth() {
                         )
                     )
                 }
-                const redirectUrl = query.get(REDIRECT_URL_KEY)
+                const redirectUrl = '/app/oranizer/organizer-list'
+
                 navigate(
                     redirectUrl ? redirectUrl : appConfig.authenticatedEntryPath
                 )
@@ -61,7 +64,7 @@ function useAuth() {
                 if (resp.data.user) {
                     dispatch(
                         setUser(
-                            resp.data.user || {
+                            userInfo || {
                                 avatar: '',
                                 userName: 'Anonymous',
                                 authority: ['USER'],
@@ -94,7 +97,6 @@ function useAuth() {
     }
 
     const signOut = async () => {
-        // await apiSignOut()
         handleSignOut()
     }
 
