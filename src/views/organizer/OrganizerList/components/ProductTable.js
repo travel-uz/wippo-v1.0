@@ -83,7 +83,7 @@ const ProductTable = () => {
 
     const dispatch = useDispatch()
 
-    const { pageIndex, pageSize, sort, query, total } = useSelector(
+    const { offset, limit, sort, search, total } = useSelector(
         (state) => state.organizerList.data.tableData
     )
 
@@ -99,7 +99,7 @@ const ProductTable = () => {
     useEffect(() => {
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageIndex, pageSize, sort])
+    }, [offset, limit, sort])
 
     useEffect(() => {
         if (tableRef) {
@@ -108,13 +108,19 @@ const ProductTable = () => {
     }, [filterData])
 
     const tableData = useMemo(
-        () => ({ pageIndex, pageSize, sort, query, total }),
-        [pageIndex, pageSize, sort, query, total]
+        () => ({ offset, limit, sort, search, total }),
+        [offset, limit, sort, search, total]
     )
 
     const fetchData = () => {
-        dispatch(getOrganizer({query}))
-        // pageIndex, pageSize, sort, query, filterData
+        // if(search){
+        //     dispatch(getOrganizer({search}))
+        // }else{
+        
+
+        // }
+        dispatch(getOrganizer({}))
+        // offset, limit, sort, query, filterData
     }
 
     const columns = useMemo(
@@ -176,14 +182,14 @@ const ProductTable = () => {
 
     const onPaginationChange = (page) => {
         const newTableData = cloneDeep(tableData)
-        newTableData.pageIndex = page
+        newTableData.offset = page
         dispatch(setTableData(newTableData))
     }
 
     const onSelectChange = (value) => {
         const newTableData = cloneDeep(tableData)
-        newTableData.pageSize = Number(value)
-        newTableData.pageIndex = 1
+        newTableData.limit = Number(value)
+        newTableData.offset = 0
         dispatch(setTableData(newTableData))
     }
 
@@ -192,7 +198,7 @@ const ProductTable = () => {
         newTableData.sort = sort
         dispatch(setTableData(newTableData))
     }
-
+    console.log(tableData, 'tableData')
     return (
         <>
             <DataTable
