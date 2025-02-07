@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import reducer from './store'
 import { injectReducer } from 'store/index'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getProduct, updateProduct, deleteProduct } from './store/dataSlice'
+import { updateProduct, deleteProduct } from './store/dataSlice'
 import ProductForm from 'views/organizer/OrganizerForm'
 import isEmpty from 'lodash/isEmpty'
+import { getOrganizer } from '../OrganizerList/store/dataSlice'
 
 injectReducer('salesProductEdit', reducer)
 
@@ -23,7 +24,7 @@ const ProductEdit = () => {
     const loading = useSelector((state) => state.salesProductEdit.data.loading)
 
     const fetchData = (data) => {
-        dispatch(getProduct(data))
+        dispatch(getOrganizer(data))
     }
 
     const handleFormSubmit = async (values, setSubmitting) => {

@@ -18,7 +18,7 @@ export const protectedRoutes = [
     },
     {
         key: 'organizerEdit',
-        path: '/app/organizer/organizer-edit',
+        path: '/app/organizer/organizer-edit/:id',
         component: React.lazy(() => import('views/organizer/OrganizerEdit')),
         authority: [],
     },

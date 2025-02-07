@@ -76,7 +76,7 @@ const DeleteProductButton = ({ onDelete }) => {
 }
 
 const ProductForm = forwardRef((props, ref) => {
-    const { type, initialData,onDiscard, onDelete } = props
+    const { type, initialData, onDiscard, onDelete, onFormSubmit } = props
     // onFormSubmit
     console.log(props, 'onDiscard')
 
@@ -105,8 +105,7 @@ const ProductForm = forwardRef((props, ref) => {
                         //     formData.img = formData.imgList[0].img
                         // }
                     }
-                    // onFormSubmit?.(formData, setSubmitting)
-                    console.log(values, 'values')
+                    onFormSubmit?.(formData, setSubmitting)
                 }}
             >
                 {({ values, touched, errors, isSubmitting }) => (
