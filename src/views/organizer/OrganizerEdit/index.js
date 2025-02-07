@@ -12,7 +12,7 @@ import { getOrganizer } from '../OrganizerList/store/dataSlice'
 
 injectReducer('salesProductEdit', reducer)
 
-const ProductEdit = () => {
+const OrganizerEdit = () => {
     const dispatch = useDispatch()
 
     const location = useLocation()
@@ -102,4 +102,4 @@ const ProductEdit = () => {
     )
 }
 
-export default ProductEdit
+export default OrganizerEdit
