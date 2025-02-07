@@ -55,7 +55,7 @@ const DataTable = forwardRef((props, ref) => {
     } = props
 
     const { pageSize, pageIndex, total } = pagingData
-
+    console.log(pagingData, 'pagingData')
     const [sorting, setSorting] = useState(null)
 
     const pageSizeOption = useMemo(
