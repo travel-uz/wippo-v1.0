@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetOrganizerList } from 'services/OrganizerService'
-import { apiDeleteSalesProducts } from 'services/SalesService'
+import {
+    apiDeleteOrganizer,
+    apiGetOrganizerList,
+} from 'services/OrganizerService'
 
 // Async thunk to fetch organizer data
 export const getOrganizer = createAsyncThunk(
@@ -13,20 +15,20 @@ export const getOrganizer = createAsyncThunk(
 
 // Async function to delete a product
 export const deleteProduct = async (data) => {
-    const response = await apiDeleteSalesProducts(data)
+    const response = await apiDeleteOrganizer(data)
     return response.data
 }
 
 // Initial table data
 export const initialTableData = {
     total: 0,
-    pageIndex: 1,
-    pageSize: 10,
-    query: '',
-    sort: {
-        order: '',
-        key: '',
-    },
+    offset: 0,
+    limit: 10,
+    search: '',
+    // sort: {
+    //     order: '',
+    //     key: '',
+    // },
 }
 
 // Initial filter data
@@ -64,17 +66,14 @@ const dataSlice = createSlice({
             })
             .addCase(getOrganizer.fulfilled, (state, action) => {
                 state.productList = action.payload.data
-                state.tableData.total = action.payload.length
+                state.tableData.total = action.payload.total
                 state.loading = false
             })
     },
 })
 
 // Export actions and reducer
-export const {
-    updateProductList,
-    setTableData,
-    setFilterData,
-} = dataSlice.actions
+export const { updateProductList, setTableData, setFilterData } =
+    dataSlice.actions
 
 export default dataSlice.reducer

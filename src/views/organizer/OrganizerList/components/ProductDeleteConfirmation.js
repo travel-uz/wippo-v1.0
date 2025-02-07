@@ -13,9 +13,7 @@ const ProductDeleteConfirmation = () => {
     const selectedProduct = useSelector(
         (state) => state.organizerList.state.selectedProduct
     )
-    const tableData = useSelector(
-        (state) => state.organizerList.data.tableData
-    )
+    const tableData = useSelector((state) => state.organizerList.data.tableData)
 
     const onDialogClose = () => {
         dispatch(toggleDeleteConfirmation(false))
@@ -48,15 +46,15 @@ const ProductDeleteConfirmation = () => {
             onClose={onDialogClose}
             onRequestClose={onDialogClose}
             type="danger"
-            title="Delete product"
+            title="Delete organizer"
             onCancel={onDialogClose}
             onConfirm={onDelete}
             confirmButtonColor="red-600"
         >
             <p>
-                Are you sure you want to delete this product? All record related
-                to this product will be deleted as well. This action cannot be
-                undone.
+                Are you sure you want to delete this organizer? All record
+                related to this product will be deleted as well. This action
+                cannot be undone.
             </p>
         </ConfirmDialog>
     )

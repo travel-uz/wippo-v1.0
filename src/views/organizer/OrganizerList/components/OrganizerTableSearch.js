@@ -19,8 +19,8 @@ const OrganizerTableSearch = () => {
 
     function handleDebounceFn(val) {
         const newTableData = cloneDeep(tableData)
-        newTableData.query = val
-        newTableData.pageIndex = 1
+        newTableData.search = val
+        // newTableData.offset = 1
         if (typeof val === 'string' && val.length > 1) {
             fetchData(newTableData)
         }

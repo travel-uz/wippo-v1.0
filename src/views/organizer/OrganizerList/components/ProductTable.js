@@ -78,12 +78,11 @@ const ActionColumn = ({ row }) => {
 // }
 
 const ProductTable = () => {
-
     const tableRef = useRef(null)
 
     const dispatch = useDispatch()
 
-    const { pageIndex, pageSize, sort, query, total } = useSelector(
+    const { limit, offset, sort, search, total } = useSelector(
         (state) => state.organizerList.data.tableData
     )
 
@@ -92,14 +91,13 @@ const ProductTable = () => {
     )
 
     const loading = useSelector((state) => state.organizerList.data.loading)
-    
-    const data = useSelector((state) => state.organizerList.data.productList)
 
+    const data = useSelector((state) => state.organizerList.data.productList)
 
     useEffect(() => {
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageIndex, pageSize, sort])
+    }, [limit, offset, sort])
 
     useEffect(() => {
         if (tableRef) {
@@ -108,12 +106,18 @@ const ProductTable = () => {
     }, [filterData])
 
     const tableData = useMemo(
-        () => ({ pageIndex, pageSize, sort, query, total }),
-        [pageIndex, pageSize, sort, query, total]
+        () => ({ limit, offset, sort, search, total }),
+        [limit, offset, sort, search, total]
     )
 
     const fetchData = () => {
-        dispatch(getOrganizer({query}))
+        // if (search) {
+        //     dispatch(getOrganizer({ search }))
+        // } else {
+        //     dispatch(getOrganizer({}))
+        // }
+        dispatch(getOrganizer({ limit, offset }))
+
         // pageIndex, pageSize, sort, query, filterData
     }
 
@@ -123,14 +127,13 @@ const ProductTable = () => {
                 header: 'Name',
                 accessorKey: 'name',
                 cell: (props) => {
-                            const row = props.row.original
-                            return <span className="capitalize">{row.title['en']}</span>
-                        },
+                    const row = props.row.original
+                    return <span className="capitalize">{row.title['en']}</span>
+                },
             },
             {
                 header: 'Phone',
                 accessorKey: 'phone',
-               
             },
             // {
             //     header: 'Login',
@@ -176,14 +179,15 @@ const ProductTable = () => {
 
     const onPaginationChange = (page) => {
         const newTableData = cloneDeep(tableData)
-        newTableData.pageIndex = page
+        newTableData.offset = page
         dispatch(setTableData(newTableData))
     }
 
     const onSelectChange = (value) => {
+        console.log(value)
         const newTableData = cloneDeep(tableData)
-        newTableData.pageSize = Number(value)
-        newTableData.pageIndex = 1
+        newTableData.limit = Number(value)
+        newTableData.offset = 1
         dispatch(setTableData(newTableData))
     }
 
