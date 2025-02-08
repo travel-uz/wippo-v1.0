@@ -21,3 +21,10 @@ export async function apiDeleteOrganizer(data) {
         data,
     })
 }
+export async function apiGetOrganizerItem(data) {
+    return ApiService.fetchData({
+        url: '/api/admin/organizer/get-by-id',
+        method: 'post',
+        data,
+    })
+}

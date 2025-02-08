@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { apiGetOrganizerItem } from 'services/OrganizerService'
 import {
-    apiGetSalesProduct,
     apiPutSalesProduct,
     apiDeleteSalesProducts,
 } from 'services/SalesService'
 
-export const getProduct = createAsyncThunk(
-    'salesProductEdit/data/getProducts',
+export const getOrganizerItem = createAsyncThunk(
+    'getOrganizerItem/data/getOrganizerItem',
     async (data) => {
-        const response = await apiGetSalesProduct(data)
+        const response = await apiGetOrganizerItem(data)
         return response.data
     }
 )
@@ -24,18 +24,19 @@ export const deleteProduct = async (data) => {
 }
 
 const dataSlice = createSlice({
-    name: 'salesProductEdit/data',
+    name: 'organizerEdit/data',
     initialState: {
         loading: false,
         productData: [],
     },
     reducers: {},
     extraReducers: {
-        [getProduct.fulfilled]: (state, action) => {
+        [getOrganizerItem.fulfilled]: (state, action) => {
+            console.log(action.payload)
             state.productData = action.payload
             state.loading = false
         },
-        [getProduct.pending]: (state) => {
+        [getOrganizerItem.pending]: (state) => {
             state.loading = true
         },
     },

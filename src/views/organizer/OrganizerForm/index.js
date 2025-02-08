@@ -105,7 +105,8 @@ const ProductForm = forwardRef((props, ref) => {
                         //     formData.img = formData.imgList[0].img
                         // }
                     }
-                    onFormSubmit?.(formData, setSubmitting)
+                    console.log(formData, 'formData')
+                    // onFormSubmit?.(formData, setSubmitting)
                 }}
             >
                 {({ values, touched, errors, isSubmitting }) => (

@@ -5,15 +5,16 @@ import { Input, FormItem, Select } from 'components/ui'
 import { Field } from 'formik'
 
 export const categories = [
-    { label: 'New', value: '1' },
-    { label: 'Registered', value: '2' },
-    { label: 'Allowed', value: '3' },
-    { label: 'Bloacked', value: '4' },
+    { label: 'New', value: 1 },
+    { label: 'Registered', value: 2 },
+    { label: 'Allowed', value: 3 },
+    { label: 'Bloacked', value: 4 },
 ]
 
 const OrganizationFields = (props) => {
     const { values, touched, errors } = props
 
+    console.log(values, 'values')
     return (
         <AdaptableCard className="mb-4" divider isLastChild>
             <h5>Organizations</h5>

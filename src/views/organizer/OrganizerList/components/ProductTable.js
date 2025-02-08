@@ -196,7 +196,6 @@ const ProductTable = () => {
         newTableData.sort = sort
         dispatch(setTableData(newTableData))
     }
-    console.log(tableData, 'tableData')
     return (
         <>
             <DataTable
