@@ -15,6 +15,16 @@ const navigationConfig = [
         authority: [],
         subMenu: [],
     },
+    {
+        key: 'tour',
+        path: '/app/tour/tour-list',
+        title: 'Tour',
+        translateKey: 'nav.home',
+        icon: 'home',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
     /** Example purpose only, please remove */
     // {
     //     key: 'singleMenuItem',
