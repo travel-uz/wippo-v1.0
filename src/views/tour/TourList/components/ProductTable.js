@@ -4,7 +4,7 @@ import { DataTable } from 'components/shared'
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
 // import { FiPackage } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrganizer, setTableData } from '../store/dataSlice'
+import { getTour, setTableData } from '../store/dataSlice'
 import { setSelectedProduct } from '../store/stateSlice'
 import { toggleDeleteConfirmation } from '../store/stateSlice'
 import useThemeClass from 'utils/hooks/useThemeClass'
@@ -83,16 +83,16 @@ const ProductTable = () => {
     const dispatch = useDispatch()
 
     const { limit, offset, sort, search, total } = useSelector(
-        (state) => state.organizerList.data.tableData
+        (state) => state.tourList.data.tableData
     )
 
     const filterData = useSelector(
-        (state) => state.organizerList.data.filterData
+        (state) => state.tourList.data.filterData
     )
 
-    const loading = useSelector((state) => state.organizerList.data.loading)
+    const loading = useSelector((state) => state.tourList.data.loading)
 
-    const data = useSelector((state) => state.organizerList.data.productList)
+    const data = useSelector((state) => state.tourList.data.productList)
 
     useEffect(() => {
         fetchData()
@@ -116,7 +116,7 @@ const ProductTable = () => {
         // } else {
         //     dispatch(getOrganizer({}))
         // }
-        dispatch(getOrganizer({ limit, offset }))
+        dispatch(getTour({ limit, offset }))
 
         // pageIndex, pageSize, sort, query, filterData
     }

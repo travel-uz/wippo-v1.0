@@ -1,21 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
-    apiDeleteOrganizer,
-    apiGetOrganizerList,
-} from 'services/OrganizerService'
+    apiDeleteTour,
+    apiGetTourList,
+} from 'services/TourService'
 
 // Async thunk to fetch organizer data
-export const getOrganizer = createAsyncThunk(
-    'organizerList/data/getOrganizer',
+export const getTour = createAsyncThunk(
+    'tourList/data/getTour',
     async (data) => {
-        const response = await apiGetOrganizerList(data)
+        const response = await apiGetTourList(data)
         return response.data
     }
 )
 
 // Async function to delete a product
+// ** temporary commented
 export const deleteProduct = async (data) => {
-    const response = await apiDeleteOrganizer(data)
+    const response = await apiDeleteTour(data)
     return response.data
 }
 
@@ -41,7 +42,7 @@ export const initialFilterData = {
 
 // Create the slice
 const dataSlice = createSlice({
-    name: 'organizerList/data',
+    name: 'tourList/data',
     initialState: {
         loading: false,
         productList: [],
@@ -61,10 +62,10 @@ const dataSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getOrganizer.pending, (state) => {
+            .addCase(getTour.pending, (state) => {
                 state.loading = true
             })
-            .addCase(getOrganizer.fulfilled, (state, action) => {
+            .addCase(getTour.fulfilled, (state, action) => {
                 state.productList = action.payload.data
                 state.tableData.total = action.payload.total
                 state.loading = false
