@@ -200,7 +200,7 @@ const DrawerFooter = ({ onSaveClick, onCancel }) => {
     )
 }
 
-const OrganizerFilter = () => {
+const TourFilter = () => {
     const formikRef = useRef()
 
     const [isOpen, setIsOpen] = useState(false)
@@ -245,4 +245,4 @@ const OrganizerFilter = () => {
     )
 }
 
-export default OrganizerFilter
+export default TourFilter

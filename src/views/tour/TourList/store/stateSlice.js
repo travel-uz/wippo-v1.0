@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const stateSlice = createSlice({
-    name: 'organizerList/state',
+    name: 'tourList/state',
     initialState: {
         deleteConfirmation: false,
         selectedProduct: '',

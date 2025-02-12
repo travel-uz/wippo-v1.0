@@ -3,7 +3,7 @@ import { Button } from 'components/ui'
 import {  HiPlusCircle } from 'react-icons/hi'
 // import OrganaizerFilter from './OrganaizerFilter'
 import { Link } from 'react-router-dom'
-import OrganizerTableSearch from './OrganizerTableSearch'
+import OrganizerTableSearch from './TourTableSearch'
 
 const ProductTableTools = () => {
     return (
