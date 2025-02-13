@@ -19,5 +19,12 @@ export async function apiDeleteOrganizer(data) {
         url: '/api/admin/organizer/delete',
         method: 'post',
         data,
-    }) 
+    })
+}
+export async function apiGetOrganizerItem(data) {
+    return ApiService.fetchData({
+        url: '/api/admin/organizer/get-by-id',
+        method: 'post',
+        data,
+    })
 }
