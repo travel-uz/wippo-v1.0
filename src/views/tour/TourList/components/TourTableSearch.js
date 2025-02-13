@@ -2,17 +2,17 @@ import React, { useRef } from 'react'
 import { Input } from 'components/ui'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrganizer, setTableData } from '../store/dataSlice'
+import { getTour, setTableData } from '../store/dataSlice'
 import debounce from 'lodash/debounce'
 import cloneDeep from 'lodash/cloneDeep'
 
-const OrganizerTableSearch = () => {
+const TourTableSearch = () => {
     const dispatch = useDispatch()
 
     const searchInput = useRef()
 
     const tableData = useSelector(
-        (state) => state.organizerList?.data?.tableData
+        (state) => state.tourList?.data?.tableData
     )
 
     const debounceFn = debounce(handleDebounceFn, 500)
@@ -32,7 +32,7 @@ const OrganizerTableSearch = () => {
 
     const fetchData = (data) => {
         dispatch(setTableData(data))
-        dispatch(getOrganizer(data))
+        dispatch(getTour(data))
     }
 
     const onEdit = (e) => {
@@ -51,4 +51,4 @@ const OrganizerTableSearch = () => {
     )
 }
 
-export default OrganizerTableSearch
+export default TourTableSearch

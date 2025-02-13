@@ -15,7 +15,7 @@ import isEmpty from 'lodash/isEmpty'
 
 injectReducer('organizerEdit', reducer)
 
-const OrganizerEdit = () => {
+const TourEdit = () => {
     const dispatch = useDispatch()
 
     const location = useLocation()
@@ -105,4 +105,4 @@ const OrganizerEdit = () => {
     )
 }
 
-export default OrganizerEdit
+export default TourEdit
