@@ -13,11 +13,11 @@ export async function apiCreateOrganizer(data) {
         method: 'post',
         data,
     })
-}
+}   
 export async function apiDeleteOrganizer(data) {
     return ApiService.fetchData({
         url: '/api/admin/organizer/delete',
         method: 'post',
-        data,   
+        data,
     }) 
 }
